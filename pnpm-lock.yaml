@@ -17,7 +17,7 @@ importers:
 
   apps/storybook:
     dependencies:
-      '@repo/ui':
+      '@grapicar-studio/design-system':
         specifier: workspace:*
         version: link:../../packages/ui
       react:
