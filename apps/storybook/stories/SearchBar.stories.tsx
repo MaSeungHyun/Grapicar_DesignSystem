@@ -32,9 +32,3 @@ export const Default: Story = {
     value: "SearchBar",
   },
 };
-
-export const Large: Story = {
-  args: {
-    value: "SearchBar",
-  },
-};

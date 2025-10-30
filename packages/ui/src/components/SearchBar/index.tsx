@@ -5,7 +5,12 @@ import { Input } from "../Input";
 
 export interface SearchBarProps extends React.InputHTMLAttributes<HTMLInputElement> {}
 
-export const SearchBar = ({ className = "", onFocus, onBlur, ...props }: SearchBarProps) => {
+export const SearchBar = ({
+  className = "",
+  onFocus = () => {},
+  onBlur = () => {},
+  ...props
+}: SearchBarProps) => {
   const [isFocused, setIsFocused] = useState(false);
 
   const handleClickFocusCallback = (event: React.FocusEvent<HTMLInputElement>) => {
