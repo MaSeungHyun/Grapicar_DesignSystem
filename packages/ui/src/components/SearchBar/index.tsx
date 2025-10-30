@@ -27,7 +27,7 @@ export const SearchBar = ({
     <div className={cn("bg-black-700 group relative flex min-w-12 items-center", className)}>
       <Input
         className={cn(
-          "pl-6.5 relative h-full w-full border-cyan-300 group-hover:border-cyan-200 group-hover:text-gray-100",
+          "pl-6.5 relative h-full w-full border-cyan-400 group-hover:text-gray-100",
           !isFocused && "text-gray-200",
         )}
         onFocus={handleClickFocusCallback}
