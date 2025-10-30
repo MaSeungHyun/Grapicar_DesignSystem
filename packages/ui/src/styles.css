@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 :root {
-font-size: 12px;
+  font-size: 12px;
 }
 
 @layer theme, base, components, utilities;
 
 @theme {
-  --font-sans: "Pretendard Variable";  
+  --font-sans: "Pretendard Variable";
 
   --color-black-100: #3f3f3f;
   --color-black-200: #3e3e3e;
