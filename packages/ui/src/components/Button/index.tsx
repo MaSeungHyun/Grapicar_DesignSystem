@@ -9,9 +9,10 @@ export const Button = ({ children, className = "", ...props }: ButtonProps) => {
   return (
     <button
       className={cn(
-        "bg-black-700 text-text-primary h-full min-h-10 w-full min-w-24 rounded-md px-5 py-2",
-        "border border-gray-300",
-        "hover:bg-black-100 hover:cursor-pointer",
+        "bg-black-700 text-text-primary h-full min-h-8 w-full min-w-24 rounded-md border px-6 py-1",
+        !props.disabled &&
+          "hover:bg-black-500 border-cyan-300 hover:cursor-pointer hover:border-cyan-200",
+        props.disabled && "hover:bg-black-700 border-cyan-400 text-gray-300 hover:cursor-default",
         className,
       )}
       {...props}
