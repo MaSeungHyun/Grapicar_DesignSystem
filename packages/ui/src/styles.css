@@ -2,6 +2,8 @@
 
 :root {
   font-size: 12px;
+
+  box-sizing: border-box;
 }
 
 @layer theme, base, components, utilities;
