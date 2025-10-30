@@ -1,5 +1,4 @@
 import React from "react";
-import "./Button.css";
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -15,10 +14,11 @@ export const Button = ({
   className = "",
   ...props
 }: ButtonProps) => {
-  const classes = `btn btn--${variant} btn--${size} ${className}`.trim();
-
   return (
-    <button className={classes} {...props}>
+    <button
+      className={"bg-black-200 w-full h-full px-5 rounded-md text-white"}
+      {...props}
+    >
       {children}
     </button>
   );
