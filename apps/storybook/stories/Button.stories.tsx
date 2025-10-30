@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Button } from "@repo/ui";
+import { Button } from "@grapicar-studio/design-system";
 
 const meta = {
   title: "Components/Button",

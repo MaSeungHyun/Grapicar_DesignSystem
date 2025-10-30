@@ -9,7 +9,7 @@
     "preview": "serve storybook-static"
   },
   "dependencies": {
-    "@repo/ui": "workspace:*",
+    "@grapicar-studio/design-system": "workspace:*",
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
   },

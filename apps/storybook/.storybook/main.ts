@@ -22,7 +22,7 @@ const config: StorybookConfig = {
     return mergeConfig(config, {
       resolve: {
         alias: {
-          "@repo/ui": "../../packages/ui/src/index.ts",
+          "@grapicar-studio/design-system": "../../packages/ui/src/index.ts",
         },
       },
     });
