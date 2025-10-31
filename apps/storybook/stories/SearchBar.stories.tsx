@@ -1,5 +1,5 @@
 import { SearchBar } from "@grapicar-studio/design-system";
-import { useState } from "@storybook/preview-api";
+import { useArgs } from "@storybook/preview-api";
 import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
 
@@ -14,6 +14,22 @@ const meta = {
       },
     },
   },
+  argTypes: {
+    value: {
+      control: "text",
+      defaultValue: "Grapicar Studio",
+      table: {
+        type: { summary: "string" },
+        defaultValue: { summary: "" },
+      },
+    },
+    onChange: {
+      action: "onChange",
+      table: {
+        type: { summary: "function" },
+      },
+    },
+  },
   tags: ["autodocs"],
 } satisfies Meta<typeof SearchBar>;
 
@@ -23,10 +39,10 @@ type SearchBarStory = StoryObj<typeof SearchBar>;
 
 export const Default: SearchBarStory = {
   render: (args) => {
-    const [value, setValue] = useState("Grapicar Studio");
+    const [{ value }, setValue] = useArgs();
 
     const handleChangeValue = (event: React.ChangeEvent<HTMLInputElement>) => {
-      setValue(event.target.value);
+      setValue({ value: event.target.value });
     };
 
     return (<SearchBar {...args} value={value} onChange={handleChangeValue} />) as any;
