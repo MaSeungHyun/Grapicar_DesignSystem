@@ -11,7 +11,8 @@ const meta = {
 
     docs: {
       description: {
-        component: "사용자 검색을 위한 기본 SearchBar 컴포넌트로, Icon이 추가된 Input입니다.",
+        component:
+          "사용자 클릭 액션을 받는 기본 Toggle 컴포넌트입니다. shape 속성을 통해 모양을 변경할 수 있습니다.",
       },
     },
   },
@@ -31,7 +32,7 @@ export const Default: ToggleStory = {
     };
     return (
       <Toggle {...args} pressed={pressed} onPressedChange={handlePressedChange}>
-        <Icon icon="MousePointer2" size={12} className="fill-white" />
+        <Icon icon="MousePointer2" size={12} fill="white" />
       </Toggle>
     ) as any;
   },
@@ -47,7 +48,7 @@ export const Circle: ToggleStory = {
 
     return (
       <Toggle {...args} shape="circle" pressed={pressed} onPressedChange={handlePressedChange}>
-        <Icon icon="MousePointer2" size={12} className="fill-white" />
+        <Icon icon="MousePointer2" size={12} fill="white" />
       </Toggle>
     ) as any;
   },
