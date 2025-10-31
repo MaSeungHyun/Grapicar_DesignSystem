@@ -9,14 +9,14 @@ type IconProps = LucideProps & {
   onClick?: () => void;
 };
 
-export default function Icon({
-  className,
-  icon,
+export const Icon = ({
+  className = "",
+  icon = "Box",
   fill = "transparent",
   size = 12,
-  onClick,
+  onClick = () => {},
   ...props
-}: IconProps): React.ReactNode {
+}: IconProps): React.ReactNode => {
   const Icon = icons[icon as keyof typeof icons];
 
   return (
@@ -28,4 +28,4 @@ export default function Icon({
       {...props}
     />
   );
-}
+};
