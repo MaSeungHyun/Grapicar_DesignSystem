@@ -31,7 +31,12 @@ export const Default: ToggleStory = {
       setPressed(value);
     };
     return (
-      <Toggle {...args} pressed={pressed} onPressedChange={handlePressedChange}>
+      <Toggle
+        {...args}
+        style={{ height: "24px", width: "24px" }}
+        pressed={pressed}
+        onPressedChange={handlePressedChange}
+      >
         <Icon icon="MousePointer2" size={12} fill="white" />
       </Toggle>
     ) as any;
@@ -47,7 +52,13 @@ export const Circle: ToggleStory = {
     };
 
     return (
-      <Toggle {...args} shape="circle" pressed={pressed} onPressedChange={handlePressedChange}>
+      <Toggle
+        {...args}
+        shape="circle"
+        style={{ height: "30px", width: "30px" }}
+        pressed={pressed}
+        onPressedChange={handlePressedChange}
+      >
         <Icon icon="MousePointer2" size={12} fill="white" />
       </Toggle>
     ) as any;
