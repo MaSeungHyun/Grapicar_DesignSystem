@@ -27,8 +27,9 @@ export const Toggle = ({ className = "", children, shape = "square", ...props }:
     <RadixToggle.Root
       className={cn(
         "bg-black-600 group relative flex aspect-square min-h-10 min-w-10 items-center justify-center hover:bg-gray-600/90",
-        value && "bg-cyan-300",
-        shape === "circle" && "rounded-full hover:border hover:border-cyan-300",
+        value && "bg-cyan-500 hover:bg-cyan-500/70",
+        value && shape === "circle" && "border border-cyan-200",
+        shape === "circle" && "rounded-full hover:border hover:border-cyan-200",
         className,
       )}
       pressed={value}

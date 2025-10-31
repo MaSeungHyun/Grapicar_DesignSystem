@@ -1,2 +1,2 @@
-export { Toggle } from "./index.tsx";
-export type { ToggleProps } from "./index.tsx";
+export { Toggle } from "./Toggle.tsx";
+export type { ToggleProps } from "./Toggle.tsx";
