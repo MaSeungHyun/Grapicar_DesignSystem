@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { cn } from "../../utils/style";
-import Icon from "../Icon";
+import { Icon } from "../Icon";
 import { Input } from "../Input";
 
 export interface SearchBarProps extends React.InputHTMLAttributes<HTMLInputElement> {}
