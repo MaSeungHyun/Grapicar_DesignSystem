@@ -1,5 +1,7 @@
 import { Input } from "@grapicar-studio/design-system";
+import { useState } from "@storybook/preview-api";
 import type { Meta, StoryObj } from "@storybook/react";
+import * as React from "react";
 
 const meta = {
   title: "Components/Input",
@@ -14,52 +16,35 @@ const meta = {
     },
   },
   tags: ["autodocs"],
-  argTypes: {
-    value: {
-      control: "text",
-      description: "값",
-      table: {
-        type: { summary: "string" },
-      },
-    },
-    readOnly: {
-      control: "boolean",
-      description: "읽기 모드",
-      table: {
-        type: { summary: "boolean" },
-        defaultValue: { summary: "false" },
-      },
-    },
-    disabled: {
-      control: "boolean",
-      description: "비활성화",
-      table: {
-        type: { summary: "boolean" },
-        defaultValue: { summary: "false" },
-      },
-    },
-    onKeyDown: {
-      control: undefined,
-      description: "키 입력 이벤트 핸들러 (단축키 비활성화 적용 상태)",
-      table: {
-        type: { summary: "React.KeyboardEvent<HTMLInputElement>" },
-      },
-    },
-  },
 } satisfies Meta<typeof Input>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
-  args: {
-    value: "Grapicar Studio",
+type InputStory = StoryObj<typeof Input>;
+
+export const Default: InputStory = {
+  render: (args) => {
+    const [value, setValue] = useState("Grapicar Studio");
+    return (<Input {...args} value={value} onChange={(e) => setValue(e.target.value)} />) as any;
   },
 };
 
-export const Disabled: Story = {
+export const ReadOnly: InputStory = {
   args: {
-    value: "Disabled Input",
+    readOnly: true,
+  },
+  render: (args) => {
+    const [value, setValue] = useState("Grapicar Studio");
+    return (<Input {...args} value={value} onChange={(e) => setValue(e.target.value)} />) as any;
+  },
+};
+
+export const Disabled: InputStory = {
+  args: {
     disabled: true,
+  },
+  render: (args) => {
+    const [value, setValue] = useState("Grapicar Studio");
+    return (<Input {...args} value={value} onChange={(e) => setValue(e.target.value)} />) as any;
   },
 };

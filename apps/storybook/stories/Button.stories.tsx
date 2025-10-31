@@ -34,15 +34,16 @@ const meta = {
 } satisfies Meta<typeof Button>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
 
-export const Deafult: Story = {
+type ButtonStory = StoryObj<typeof Button>;
+
+export const Deafult: ButtonStory = {
   args: {
     children: "Button",
   },
 };
 
-export const Disabled: Story = {
+export const Disabled: ButtonStory = {
   args: {
     children: "Button",
     disabled: true,
