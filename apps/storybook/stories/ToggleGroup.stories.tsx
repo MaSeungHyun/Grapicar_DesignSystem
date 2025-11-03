@@ -9,7 +9,7 @@ const meta = {
   parameters: {
     layout: "centered",
     backgrounds: {
-      default: "light",
+      default: "dark",
     },
     docs: {
       description: {
