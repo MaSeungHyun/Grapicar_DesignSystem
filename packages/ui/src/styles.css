@@ -6,6 +6,71 @@
   box-sizing: border-box;
 }
 
+* {
+  box-sizing: border-box;
+}
+
+.css-k7lbue {
+  background-color: #353535 !important;
+}
+.css-11knh3z {
+  color: #f0f0f0 !important;
+}
+
+.css-qa4clq {
+  color: #f0f0f0 !important;
+}
+
+.css-qa4clq :where(p:not(.sb-anchor, .sb-unstyled, .sb-unstyled p)) {
+  color: #f0f0f0 !important;
+}
+.css-p1dfi6 {
+  background: #252525 !important;
+}
+.css-v2ifgj th {
+  background: #252525 !important;
+  color: #f0f0f0 !important;
+}
+
+.css-s230ta {
+  background: none !important;
+  border: none !important;
+  box-shadow: rgba(0, 0, 0, 0.7) 0px 1px 10px !important;
+}
+
+.css-l1e2yg {
+  background: none !important;
+  border: none !important;
+  box-shadow: rgba(0, 0, 0, 0.7) 0px 1px 10px !important;
+}
+.css-hd7ysc {
+  background: none !important;
+  border: none !important;
+  box-shadow: rgba(0, 0, 0, 0.7) 0px 1px 10px !important;
+}
+
+.css-v2ifgj tbody > tr > * {
+  background: #353535 !important;
+}
+.css-jy82ux {
+  color: #f0f0f0 !important;
+}
+
+.css-qa4clq :where(h3:not(.sb-anchor, .sb-unstyled, .sb-unstyled h3)) {
+  color: #f0f0f0 !important;
+}
+
+.sbdocs-preview {
+  background: none !important;
+  border: none !important;
+  box-shadow: rgba(0, 0, 0, 0.7) 0px 1px 10px !important;
+}
+
+.css-v2ifgj.css-v2ifgj {
+  color: #f0f0f0 !important;
+  box-shadow: rgba(0, 0, 0, 0.7) 0px 1px 10px !important;
+}
+
 @layer theme, base, components, utilities;
 
 @theme {
