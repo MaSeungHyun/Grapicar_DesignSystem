@@ -4,6 +4,7 @@ import "./styles.css";
 // Export all components here
 export { Button } from "./components/Button";
 export { Checkbox } from "./components/Checkbox";
+export { Dialog } from "./components/Dialog";
 export { Icon } from "./components/Icon";
 export { Input } from "./components/Input";
 export { SearchBar } from "./components/SearchBar";
