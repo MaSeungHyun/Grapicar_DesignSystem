@@ -9,7 +9,7 @@ const meta = {
     docs: {
       description: {
         component:
-          "사용자의 클릭 액션을 받는 기본 Button 컴포넌트입니다. disabled 상태를 지원합니다.",
+          "사용자의 클릭 액션을 받는 기본 Button 컴포넌트입니다. 여러 Status에 대응하는 스타일과 각 스타일의 disabled 상태를 지원합니다.",
       },
     },
   },
@@ -40,6 +40,27 @@ type ButtonStory = StoryObj<typeof Button>;
 export const Default: ButtonStory = {
   args: {
     children: "Button",
+  },
+};
+
+export const Primary: ButtonStory = {
+  args: {
+    children: "Button",
+    variant: "primary",
+  },
+};
+
+export const Secondary: ButtonStory = {
+  args: {
+    children: "Button",
+    variant: "secondary",
+  },
+};
+
+export const Danger: ButtonStory = {
+  args: {
+    children: "Button",
+    variant: "danger",
   },
 };
 
