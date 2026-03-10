@@ -33,7 +33,7 @@ const SelectContent = ({
     <SelectPrimitives.Portal>
       <SelectPrimitives.Content
         className={cn(
-          "bg-black-300 overflow-hidden rounded-sm border border-cyan-500 p-0 shadow-md shadow-black",
+          "bg-black-300 border-accent-700 overflow-hidden rounded-sm border p-0 shadow-md shadow-black",
           className,
         )}
         {...props}
@@ -87,7 +87,7 @@ const SelectItem = ({
   return (
     <SelectPrimitives.Item
       className={cn(
-        "bg-black-300 rounded-none border-none px-3 text-white outline-none hover:border-none hover:bg-cyan-500",
+        "bg-black-300 hover:bg-accent-700 rounded-none border-none px-3 text-white outline-none hover:border-none",
         className,
       )}
       {...props}

@@ -1,3 +1,4 @@
+// @ts-nocheck - React 18 vs Storybook key/ReactNode 타입 불일치로 인한 스토리 전용 비검사
 import { Icon, Toggle } from "@grapicar-studio/design-system";
 import { useArgs } from "@storybook/preview-api";
 import type { Meta, StoryObj } from "@storybook/react";

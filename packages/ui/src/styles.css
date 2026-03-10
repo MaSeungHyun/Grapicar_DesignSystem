@@ -1,12 +1,160 @@
 @import "tailwindcss";
 
+@layer theme, base, components, utilities;
+
+/* ============================================================
+   Runtime Theme Variables (data-theme 속성으로 전환)
+   ============================================================ */
+
+:root {
+  --color-accent: #1ea7ff;
+  --color-accent-100: #1ea7ff;
+  --color-accent-200: #1b97e6;
+  --color-accent-300: #1886cc;
+  --color-accent-400: #1575b3;
+  --color-accent-500: #126499;
+  --color-accent-600: #0f5480;
+  --color-accent-700: #0c4366;
+  --color-accent-800: #09324d;
+  --color-accent-900: #062133;
+}
+
+[data-theme="mint"] {
+  --color-accent: #00ced6;
+  --color-accent-100: #00ced6;
+  --color-accent-200: #00bac1;
+  --color-accent-300: #00a5ab;
+  --color-accent-400: #009196;
+  --color-accent-500: #007c80;
+  --color-accent-600: #00676b;
+  --color-accent-700: #005256;
+  --color-accent-800: #003e41;
+  --color-accent-900: #003e41;
+}
+
+[data-theme="sky"] {
+  --color-accent: #00b8d9;
+  --color-accent-100: #00b8d9;
+  --color-accent-200: #00a6c4;
+  --color-accent-300: #0093ae;
+  --color-accent-400: #008198;
+  --color-accent-500: #006e82;
+  --color-accent-600: #005c6d;
+  --color-accent-700: #004a57;
+  --color-accent-800: #003842;
+  --color-accent-900: #00252b;
+}
+
+[data-theme="blue"] {
+  --color-accent: #1ea7ff;
+  --color-accent-100: #1ea7ff;
+  --color-accent-200: #1b97e6;
+  --color-accent-300: #1886cc;
+  --color-accent-400: #1575b3;
+  --color-accent-500: #126499;
+  --color-accent-600: #0f5480;
+  --color-accent-700: #0c4366;
+  --color-accent-800: #09324d;
+  --color-accent-900: #062133;
+}
+
+/* ============================================================
+   Static Design Tokens (Tailwind 유틸리티 클래스 자동 생성)
+   ============================================================ */
+
+@theme {
+  /* Font */
+  --font-sans: "Pretendard Variable";
+
+  /* Black scale */
+  --color-black-100: #3f3f3f;
+  --color-black-200: #3e3e3e;
+  --color-black-300: #3c3c3c;
+  --color-black-400: #383838;
+  --color-black-500: #333333;
+  --color-black-600: #282828;
+  --color-black-700: #252525;
+  --color-black-800: #241f1a;
+  --color-black-900: #1c1c1c;
+
+  /* Gray scale */
+  --color-gray-100: #f0f0f0;
+  --color-gray-200: #d3d3d3;
+  --color-gray-300: #9e9e9e;
+  --color-gray-400: #919191;
+  --color-gray-500: #707070;
+  --color-gray-600: #606060;
+  --color-gray-700: #585858;
+  --color-gray-800: #484848;
+  --color-gray-900: #303030;
+
+  /* Cyan scale */
+  --color-cyan-100: #00e1e9;
+  --color-cyan-200: #00ced6;
+  --color-cyan-300: #00a7ae;
+  --color-cyan-400: #00696d;
+  --color-cyan-500: #005255;
+  --color-cyan-600: #32555d;
+  --color-cyan-700: #003638;
+  --color-cyan-800: #002931;
+
+  /* Accent (runtime에 data-theme으로 덮어짐, :root 기본값 사용) */
+  --color-accent: var(--color-accent);
+  --color-accent-100: var(--color-accent-100);
+  --color-accent-200: var(--color-accent-200);
+  --color-accent-300: var(--color-accent-300);
+  --color-accent-400: var(--color-accent-400);
+  --color-accent-500: var(--color-accent-500);
+  --color-accent-600: var(--color-accent-600);
+  --color-accent-700: var(--color-accent-700);
+  --color-accent-800: var(--color-accent-800);
+  --color-accent-900: var(--color-accent-900);
+
+  /* Orange */
+  --color-orange-500: #ff5f00;
+  --color-orange-700: #9e3b00;
+
+  /* Yellow */
+  --color-yellow-500: #ffcc00;
+
+  /* Semantic text */
+  --color-text-primary: #f0f0f0;
+  --color-text-secondary: #acacac;
+
+  /* Progress bar */
+  --color-progress-start: #005255;
+  --color-progress-end: #00ced6;
+
+  /* Shadow */
+  --shadow-menu-primary: 0 0 3px #005255;
+
+  /* Animation */
+  --animate-slideUpAndFade: slideUpAndFade 0.2s ease-in-out;
+
+  @keyframes slideUpAndFade {
+    0% {
+      transform-origin: top;
+      transform: scaleY(0%);
+    }
+    50% {
+      transform-origin: top;
+      transform: scaleY(100%);
+    }
+  }
+}
+
+/* ============================================================
+   Storybook overrides
+   ============================================================ */
+
 :root {
   font-size: 12px;
-
   box-sizing: border-box;
 }
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -17,53 +165,23 @@
   color: #f0f0f0 !important;
 }
 
-.css-qa4clq {
+.css-qa4clq,
+.css-qa4clq :where(p:not(.sb-anchor, .sb-unstyled, .sb-unstyled p)),
+.css-qa4clq :where(h3:not(.sb-anchor, .sb-unstyled, .sb-unstyled h3)) {
   color: #f0f0f0 !important;
 }
 
-.css-qa4clq :where(p:not(.sb-anchor, .sb-unstyled, .sb-unstyled p)) {
-  color: #f0f0f0 !important;
-}
 .css-p1dfi6 {
   background: #252525 !important;
 }
+
 .css-v2ifgj th {
   background: #252525 !important;
   color: #f0f0f0 !important;
 }
 
-.css-s230ta {
-  background: none !important;
-  border: none !important;
-  box-shadow: rgba(0, 0, 0, 0.7) 0px 1px 10px !important;
-}
-
-.css-l1e2yg {
-  background: none !important;
-  border: none !important;
-  box-shadow: rgba(0, 0, 0, 0.7) 0px 1px 10px !important;
-}
-.css-hd7ysc {
-  background: none !important;
-  border: none !important;
-  box-shadow: rgba(0, 0, 0, 0.7) 0px 1px 10px !important;
-}
-
 .css-v2ifgj tbody > tr > * {
   background: #353535 !important;
-}
-.css-jy82ux {
-  color: #f0f0f0 !important;
-}
-
-.css-qa4clq :where(h3:not(.sb-anchor, .sb-unstyled, .sb-unstyled h3)) {
-  color: #f0f0f0 !important;
-}
-
-.sbdocs-preview {
-  background: none !important;
-  border: none !important;
-  box-shadow: rgba(0, 0, 0, 0.7) 0px 1px 10px !important;
 }
 
 .css-v2ifgj.css-v2ifgj {
@@ -71,65 +189,15 @@
   box-shadow: rgba(0, 0, 0, 0.7) 0px 1px 10px !important;
 }
 
-@layer theme, base, components, utilities;
-
-@theme {
-  --font-sans: "Pretendard Variable";
-
-  --color-black-100: #3f3f3f;
-  --color-black-200: #3e3e3e;
-  --color-black-300: #3c3c3c;
-  --color-black-400: #383838;
-  --color-black-500: #333333;
-  --color-black-600: #282828;
-  --color-black-700: #252525;
-  --color-black-800: #241f1a;
-  --color-black-900: #151515;
-
-  --color-gray-100: #f0f0f0;
-  --color-gray-200: #d3d3d3;
-  --color-gray-300: #9e9e9e;
-  --color-gray-400: #919191;
-  --color-gray-500: #707070;
-  --color-gray-600: #606060;
-  --color-gray-700: #505050;
-  --color-gray-800: #404040;
-  --color-gray-900: #303030;
-
-  --color-cyan-100: #00e1e9;
-  --color-cyan-200: #00ced6;
-  --color-cyan-300: #00a7ae;
-  --color-cyan-400: #00696d;
-  --color-cyan-500: #005255;
-  --color-cyan-600: #32555d;
-  --color-cyan-700: #003638;
-  --color-cyan-800: #002931;
-
-  --shadow-menu-primary: 0 0 3px #005255;
-
-  --color-orange-500: #ff5f00;
-  --color-orange-700: #9e3b00;
-
-  --color-yellow-500: #ffcc00;
-
-  --color-text-primary: #f0f0f0;
-  --color-text-secondary: #acacac;
-
-  --color-progress-start: #005255;
-  --color-progress-end: #00ced6;
-
-  --animate-slideUpAndFade: slideUpAndFade 0.2s ease-in-out;
+.css-jy82ux {
+  color: #f0f0f0 !important;
 }
 
-@keyframes slideUpAndFade {
-  0% {
-    /* opacity: 0; */
-    transform-origin: top;
-    transform: scaleY(0%);
-  }
-  50% {
-    /* opacity: 1; */
-    transform-origin: top;
-    transform: scaleY(100%);
-  }
+.css-s230ta,
+.css-l1e2yg,
+.css-hd7ysc,
+.sbdocs-preview {
+  background: none !important;
+  border: none !important;
+  box-shadow: rgba(0, 0, 0, 0.7) 0px 1px 10px !important;
 }

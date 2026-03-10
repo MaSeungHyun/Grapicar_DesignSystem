@@ -1,16 +1,21 @@
 import * as DialogPrimitives from "@radix-ui/react-dialog";
 import { cn } from "../../utils/style";
 
-const Root = DialogPrimitives.Root;
+const Root = (props: React.ComponentProps<typeof DialogPrimitives.Root>) => (
+  <DialogPrimitives.Root {...props} />
+);
 
 type DialogTriggerProps = React.ComponentPropsWithoutRef<typeof DialogPrimitives.Trigger> & {
-  children: React.ReactNode;
   className?: string;
 };
 
-const DialogTrigger = ({ children, className = "", ...props }: DialogTriggerProps) => {
+const DialogTrigger = ({
+  children,
+  className = "",
+  ...props
+}: DialogTriggerProps): React.ReactElement => {
   return (
-    <DialogPrimitives.Trigger className={cn("cursor-pointer", className)} {...props}>
+    <DialogPrimitives.Trigger className={cn(className)} {...props}>
       {children}
     </DialogPrimitives.Trigger>
   );
@@ -27,7 +32,7 @@ const DialogContent = ({
   className = "",
   outsideClickClose = false,
   ...props
-}: DialogContentProps) => {
+}: DialogContentProps): React.ReactElement => {
   return (
     <DialogPrimitives.Portal>
       <DialogPrimitives.Overlay className="z-1 absolute inset-0 left-0 top-0 bg-black/90" />
@@ -38,7 +43,7 @@ const DialogContent = ({
           }
         }}
         className={cn(
-          "bg-black-300 z-2 absolute left-1/2 top-1/2 min-h-[200px] min-w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-md border border-cyan-500 px-6 py-4 shadow-md shadow-black/70",
+          "bg-black-900 z-2 absolute left-1/2 top-1/2 min-h-[200px] min-w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-md border border-gray-800 px-6 py-4 shadow-md shadow-black/70",
           className,
         )}
         {...props}
@@ -54,7 +59,11 @@ type DialogTitleProps = React.ComponentPropsWithoutRef<typeof DialogPrimitives.T
   className?: string;
 };
 
-const DialogTitle = ({ children, className = "", ...props }: DialogTitleProps) => {
+const DialogTitle = ({
+  children,
+  className = "",
+  ...props
+}: DialogTitleProps): React.ReactElement => {
   return (
     <DialogPrimitives.Title
       className={cn("mb-5 text-xl font-bold text-white", className)}
@@ -71,7 +80,11 @@ type DialogDescriptionProps = React.ComponentPropsWithoutRef<
   children: React.ReactNode;
   className?: string;
 };
-const DialogDescription = ({ children, className = "", ...props }: DialogDescriptionProps) => {
+const DialogDescription = ({
+  children,
+  className = "",
+  ...props
+}: DialogDescriptionProps): React.ReactElement => {
   return (
     <DialogPrimitives.Description className={cn("text-lg text-gray-200", className)} {...props}>
       {children}
@@ -82,7 +95,7 @@ const DialogDescription = ({ children, className = "", ...props }: DialogDescrip
 type DialogCloseProps = React.ComponentPropsWithoutRef<typeof DialogPrimitives.Close> & {
   className?: string;
 };
-const DialogClose = ({ className = "", ...props }: DialogCloseProps) => {
+const DialogClose = ({ className = "", ...props }: DialogCloseProps): React.ReactElement => {
   return <DialogPrimitives.Close className={cn("cursor-pointer", className)} {...props} />;
 };
 
@@ -90,7 +103,11 @@ type DialogFooterProps = React.ComponentPropsWithoutRef<"div"> & {
   children: React.ReactNode;
   className?: string;
 };
-const DialogFooter = ({ children, className = "", ...props }: DialogFooterProps) => {
+const DialogFooter = ({
+  children,
+  className = "",
+  ...props
+}: DialogFooterProps): React.ReactElement => {
   return (
     <div
       className={cn(

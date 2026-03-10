@@ -1,1 +1,6 @@
-@import "@grapicar-studio/design-system/dist/design-system.css";
+@import "tailwindcss";
+
+/* development 시 소스 로드 (빌드 불필요). production 시 빌드된 CSS 사용 */
+@import "@grapicar-studio/design-system/styles";
+
+@source "../../../packages/ui/src/";
