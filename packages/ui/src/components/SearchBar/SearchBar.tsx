@@ -9,8 +9,8 @@ export const SearchBar = ({ className = "", ...props }: SearchBarProps) => {
   return (
     <div
       className={cn(
-        "bg-black-700 border-accent-700 group relative flex min-w-12 items-center rounded-sm border",
-        "focus-within:border-accent-100 focus-within:hover:border-accent-300 hover:border-gray-100",
+        "bg-black-600 border-accent-700 group relative flex min-w-12 items-center rounded-sm border",
+        "focus-within:border-accent-100 focus-within:hover:border-accent-300 hover:border-accent-500",
         className,
       )}
     >

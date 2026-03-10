@@ -37,7 +37,7 @@ export const Checkbox = ({
       defaultChecked={defaultValue}
       onCheckedChange={(checked: boolean | "indeterminate") => onChange?.(checked === true)}
       className={cn(
-        "rounded-xs hover:brightness-120 relative flex aspect-square h-5 w-5 shrink-0 items-center justify-center border-[0.031rem] border-gray-500 bg-gray-400 outline-none transition-[border-color,background-color] focus-visible:ring-2 focus-visible:ring-[var(--color-accent-200)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-black-700)]",
+        "rounded-xs hover:brightness-120 relative flex aspect-square h-5 w-5 shrink-0 items-center justify-center border-[0.031rem] border-gray-500 bg-gray-400 outline-none transition-[border-color,background-color] focus-visible:ring-2 focus-visible:ring-[var(--color-accent-200)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-black-600)]",
         "data-[state=checked]:bg-black-600 data-[state=checked]:hover:bg-black-500 data-[state=checked]:border-[var(--color-accent-200)]",
         "disabled:pointer-events-none disabled:opacity-50",
         className,
