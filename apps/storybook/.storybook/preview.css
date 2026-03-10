@@ -1,2 +1,2 @@
-/* 빌드된 design-system CSS만 사용 (유틸 포함). UI 빌드 후 사용: pnpm build:ui */
-@import "@grapicar-studio/design-system/dist/design-system.css";
+/* design-system 스타일 (export ./styles → 빌드 시 dist/design-system.css). 빌드 전에 pnpm build:ui 필요 */
+@import "@grapicar-studio/design-system/styles";
