@@ -10,7 +10,6 @@ export function TreeView({
   tree: initialTree,
   className,
   headerTitle = "Layers",
-  maxHeight = "max-h-80",
 }: TreeViewProps): React.ReactElement {
   const [tree, setTree] = useState(initialTree);
   const [collapsed, setCollapsed] = useState<Set<string | number>>(new Set());
@@ -67,7 +66,7 @@ export function TreeView({
         </div>
 
         <div className="min-h-[1px] w-full" />
-        <div className={cn("relative flex h-full flex-col overflow-y-auto")}>
+        <div className={cn("relative flex h-full flex-col overflow-y-auto", maxHeight)}>
           <div className="bg-black-600 absolute left-px top-px flex h-full w-[36px] flex-1 flex-col" />
           <div className="relative flex h-full flex-col px-px">
             {rows.map((row) => (
