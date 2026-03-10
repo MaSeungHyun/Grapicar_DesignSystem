@@ -15,7 +15,9 @@
     },
     "./styles": {
       "development": "./src/styles.css",
-      "production": "./dist/design-system.css"
+      "import": "./dist/design-system.css",
+      "require": "./dist/design-system.css",
+      "default": "./dist/design-system.css"
     },
     "./src": "./src/index.ts",
     "./src/*": "./src/*",
