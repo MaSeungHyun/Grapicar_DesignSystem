@@ -14,12 +14,22 @@ const meta = {
     },
   },
   tags: ["autodocs"],
+  args: {
+    variant: "default",
+  },
   argTypes: {
     children: {
       control: "text",
       description: "버튼 내용",
       table: {
         type: { summary: "string" },
+      },
+    },
+    variant: {
+      control: "select",
+      options: ["default", "primary", "secondary", "danger"],
+      table: {
+        type: { summary: "default | primary | secondary | danger" },
       },
     },
     disabled: {
