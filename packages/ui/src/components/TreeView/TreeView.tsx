@@ -65,7 +65,6 @@ export function TreeView({
           <span className="text-text-tertiary text-[8px] font-normal">{rows.length} items</span>
         </div>
 
-        <div className="min-h-[1px] w-full" />
         <div className={cn("relative flex h-full flex-col overflow-y-auto")}>
           <div className="bg-black-600 absolute left-px top-px flex h-full w-[36px] flex-1 flex-col" />
           <div className="relative flex h-full flex-col px-px">
