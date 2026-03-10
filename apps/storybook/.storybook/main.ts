@@ -14,6 +14,21 @@ const config: StorybookConfig = {
   docs: {
     autodocs: "tag",
   },
+  viteFinal: async (config) => {
+    config.build = {
+      ...config.build,
+      chunkSizeWarningLimit: 1000,
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            react: ["react", "react-dom"],
+            storybook: ["@storybook/react"],
+          },
+        },
+      },
+    };
+    return config;
+  },
 };
 
 export default config;
