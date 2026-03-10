@@ -26,7 +26,7 @@ const wrapperVariants = cva(
 );
 
 const buttonVariants = cva(
-  "bg-black-600 data-[disabled=false]:text-text-primary h-full min-h-8 w-full min-w-24 rounded-[calc(0.375rem-1.5px)] px-6 py-1 hover:text-[var(--color-text-secondary)] data-[disabled=true]:text-text-tertiary",
+  "bg-black-600 data-[disabled=false]:text-text-primary h-full min-h-8 w-full min-w-24 rounded-[calc(0.375rem-1.5px)] px-6 py-1 hover:text-text-secondary data-[disabled=true]:text-text-tertiary",
   {
     variants: {
       variant: {

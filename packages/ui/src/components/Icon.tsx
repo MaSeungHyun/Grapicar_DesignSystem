@@ -16,5 +16,5 @@ export const Icon = ({
 }: IconProps): React.ReactElement => {
   const Icon = icons[icon as keyof typeof icons];
 
-  return <Icon className={cn("stroke-white", className)} size={size} {...props} />;
+  return <Icon className={cn("", className)} size={size} {...props} />;
 };

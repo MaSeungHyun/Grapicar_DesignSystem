@@ -11,3 +11,10 @@ export { SearchBar } from "./components/SearchBar";
 export { Select } from "./components/Select";
 export { Toggle } from "./components/Toggle";
 export { ToggleGroup } from "./components/ToggleGroup";
+export { TreeView, TreeViewItem } from "./components/TreeView";
+export type {
+  TreeViewProps,
+  TreeNode,
+  FlatTreeNode,
+  TreeViewItemProps,
+} from "./components/TreeView";
