@@ -1,5 +1,5 @@
 {
-  "buildCommand": "pnpm -w run build:storybook",
+  "buildCommand": "export NODE_OPTIONS='--no-deprecation' && pnpm -w run build:storybook",
   "outputDirectory": "apps/storybook/storybook-static",
   "installCommand": "pnpm install"
 }
