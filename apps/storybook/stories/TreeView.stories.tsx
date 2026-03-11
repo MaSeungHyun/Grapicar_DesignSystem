@@ -181,7 +181,7 @@ const items: TreeNode[] = [
 ];
 
 const meta = {
-  title: "Components/TreeView",
+  title: "Features/TreeView",
   component: TreeView,
   parameters: {
     layout: "centered",
