@@ -105,37 +105,85 @@
 
   --color-danger: #ff5f00;
 
-  /* Accent (runtime에 data-theme으로 덮어짐, :root 기본값 사용) */
-  --color-accent: var(--color-accent);
-  --color-accent-100: var(--color-accent-100);
-  --color-accent-200: var(--color-accent-200);
-  --color-accent-300: var(--color-accent-300);
-  --color-accent-400: var(--color-accent-400);
-  --color-accent-500: var(--color-accent-500);
-  --color-accent-600: var(--color-accent-600);
-  --color-accent-700: var(--color-accent-700);
-  --color-accent-800: var(--color-accent-800);
-  --color-accent-900: var(--color-accent-900);
+  /* Accent (runtime에 data-theme으로 덮어짐, opacity 수정자 지원 예: bg-accent-700/50) */
+  --color-accent: color-mix(in srgb, var(--color-accent) calc(100% * <alpha-value>), transparent);
+  --color-accent-100: color-mix(
+    in srgb,
+    var(--color-accent-100) calc(100% * <alpha-value>),
+    transparent
+  );
+  --color-accent-200: color-mix(
+    in srgb,
+    var(--color-accent-200) calc(100% * <alpha-value>),
+    transparent
+  );
+  --color-accent-300: color-mix(
+    in srgb,
+    var(--color-accent-300) calc(100% * <alpha-value>),
+    transparent
+  );
+  --color-accent-400: color-mix(
+    in srgb,
+    var(--color-accent-400) calc(100% * <alpha-value>),
+    transparent
+  );
+  --color-accent-500: color-mix(
+    in srgb,
+    var(--color-accent-500) calc(100% * <alpha-value>),
+    transparent
+  );
+  --color-accent-600: color-mix(
+    in srgb,
+    var(--color-accent-600) calc(100% * <alpha-value>),
+    transparent
+  );
+  --color-accent-700: color-mix(
+    in srgb,
+    var(--color-accent-700) calc(100% * <alpha-value>),
+    transparent
+  );
+  --color-accent-800: color-mix(
+    in srgb,
+    var(--color-accent-800) calc(100% * <alpha-value>),
+    transparent
+  );
+  --color-accent-900: color-mix(
+    in srgb,
+    var(--color-accent-900) calc(100% * <alpha-value>),
+    transparent
+  );
 
   /* Orange */
-  --color-orange-500: #ff5f00;
-  --color-orange-700: #9e3b00;
+  --color-orange-500: color-mix(in srgb, #ff5f00 calc(100% * <alpha-value>), transparent);
+  --color-orange-700: color-mix(in srgb, #9e3b00 calc(100% * <alpha-value>), transparent);
 
   /* Yellow */
-  --color-yellow-500: #ffcc00;
+  --color-yellow-500: color-mix(in srgb, #ffcc00 calc(100% * <alpha-value>), transparent);
 
-  /* Semantic text */
-  --color-text-primary: #f0f0f0;
-  --color-text-secondary: #d3d3d3;
-  --color-text-tertiary: #9e9e9e;
-  --color-text-quaternary: #282828;
+  /* Background */
+  --color-background-100: color-mix(in srgb, #383838 calc(100% * <alpha-value>), transparent);
+  --color-background-200: color-mix(in srgb, #333333 calc(100% * <alpha-value>), transparent);
+  --color-background-300: color-mix(in srgb, #282828 calc(100% * <alpha-value>), transparent);
+  --color-background-400: color-mix(in srgb, #252525 calc(100% * <alpha-value>), transparent);
+  --color-background-500: color-mix(in srgb, #151515 calc(100% * <alpha-value>), transparent);
+
+  /* Semantic text (opacity 수정자 지원 예: bg-text-tertiary/10) */
+  --color-text-primary: color-mix(in srgb, #f0f0f0 calc(100% * <alpha-value>), transparent);
+  --color-text-secondary: color-mix(in srgb, #d3d3d3 calc(100% * <alpha-value>), transparent);
+  --color-text-tertiary: color-mix(in srgb, #9e9e9e calc(100% * <alpha-value>), transparent);
+  --color-text-quaternary: color-mix(in srgb, #282828 calc(100% * <alpha-value>), transparent);
 
   /* Progress bar */
-  --color-progress-start: #005255;
-  --color-progress-end: #00ced6;
+  --color-progress-start: color-mix(in srgb, #005255 calc(100% * <alpha-value>), transparent);
+  --color-progress-end: color-mix(in srgb, #00ced6 calc(100% * <alpha-value>), transparent);
+
+  /* Status */
+  --color-status-primary: color-mix(in srgb, #1ea7ff calc(100% * <alpha-value>), transparent);
+  --color-status-secondary: color-mix(in srgb, #585858 calc(100% * <alpha-value>), transparent);
+  --color-status-danger: color-mix(in srgb, #ff5f00 calc(100% * <alpha-value>), transparent);
 
   /* Shadow */
-  --shadow-menu-primary: 0 0 3px #005255;
+  --shadow-menu-primary: 0 0 3px color-mix(in srgb, #005255 calc(100% * <alpha-value>), transparent);
 
   /* Animation */
   --animate-slideUpAndFade: slideUpAndFade 0.2s ease-in-out;
