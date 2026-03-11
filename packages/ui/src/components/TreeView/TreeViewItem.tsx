@@ -11,23 +11,53 @@ export interface TreeViewItemProps {
 }
 
 export function TreeViewItem({ row }: TreeViewItemProps): React.ReactElement {
-  const { selected, collapsed, onSelect, onToggleCollapse, onToggleVisible, onToggleLocked } =
-    useTreeView();
+  const {
+    selected,
+    collapsed,
+    onSelect,
+    onToggleCollapse,
+    onToggleVisible,
+    onToggleLocked,
+    draggingIds,
+    dropParentId,
+    onDragStart,
+    onDragEnd,
+    onDropParent,
+    onDropParentClear,
+    onDropOnItem,
+  } = useTreeView();
 
-  const isSelected = selected === row.id;
+  const isSelected = selected.has(row.id);
   const isCollapsed = collapsed.has(row.id);
   const visible = row.visible ?? true;
   const locked = row.locked ?? false;
+
+  const isDropTarget = dropParentId === row.id && !draggingIds.has(row.id);
 
   return (
     <div
       role="treeitem"
       aria-expanded={row.hasChildren ? !isCollapsed : undefined}
       aria-selected={isSelected}
-      onClick={() => onSelect(row.id)}
+      onClick={(e) =>
+        onSelect(row.id, { shiftKey: e.shiftKey, ctrlKey: e.ctrlKey, metaKey: e.metaKey })
+      }
       className={cn(
         "flex h-[18px] min-h-[18px] w-full cursor-pointer select-none items-center transition-colors duration-100",
+        draggingIds.has(row.id) && "opacity-50",
       )}
+      onDragOver={(e) => {
+        if (draggingIds.has(row.id)) return;
+        e.preventDefault();
+        e.dataTransfer.dropEffect = "move";
+        onDropParent(row.id);
+      }}
+      onDragLeave={() => onDropParentClear()}
+      onDrop={(e) => {
+        e.preventDefault();
+        if (draggingIds.has(row.id)) return;
+        onDropOnItem(row.id);
+      }}
     >
       {/* 아이콘 컬럼 */}
       <div className="bg-black-600 flex h-full w-12 shrink-0 items-center justify-center gap-1">
@@ -45,7 +75,7 @@ export function TreeViewItem({ row }: TreeViewItemProps): React.ReactElement {
           <Icon
             icon={visible ? "Eye" : "EyeOff"}
             size={10}
-            className="fill-black-600 text-gray-600"
+            className="fill-black-600 stroke-gray-600"
           />
         </button>
         <button
@@ -62,7 +92,8 @@ export function TreeViewItem({ row }: TreeViewItemProps): React.ReactElement {
           <Icon
             icon={locked ? "LockKeyhole" : "LockKeyholeOpen"}
             size={10}
-            className="fill-transparent text-gray-600"
+            className={cn("fill-transparent stroke-gray-600", locked && "stroke-danger")}
+            stroke={locked && "#ff5f00aa"}
           />
         </button>
       </div>
@@ -71,41 +102,56 @@ export function TreeViewItem({ row }: TreeViewItemProps): React.ReactElement {
       <div
         className={cn(
           "flex h-full flex-1 items-center gap-1.5 overflow-hidden",
-          visible ? "text-text-primary" : "text-text-tertiary",
+          visible ? "text-text-primary" : "text-text-tertiary opacity-40",
           isSelected
-            ? "bg-[color-mix(in_oklab,var(--color-accent-700)_100%,transparent)]"
-            : "hover:bg-[color-mix(in_oklab,var(--color-text-tertiary)_10%,transparent)]",
+            ? "bg-accent-700"
+            : isDropTarget
+              ? "bg-accent-700"
+              : "hover:bg-text-tertiary/10",
         )}
         style={{ paddingLeft: row.depth * INDENT_PX + 8 }}
       >
-        <button
-          type="button"
-          className="flex shrink-0 items-center justify-start p-0"
-          onClick={(e) => {
+        <div
+          className="flex h-full w-fit items-center gap-1.5"
+          draggable={true}
+          onDragStart={(e) => {
             e.stopPropagation();
-            if (row.hasChildren) onToggleCollapse(row.id);
+            onDragStart(e, row.id);
           }}
-          aria-label={isCollapsed ? "펼치기" : "접기"}
+          onDragEnd={(e) => {
+            e.stopPropagation();
+            onDragEnd();
+          }}
         >
-          {row.hasChildren && (
-            <Icon
-              icon="Play"
-              size={8}
-              className={cn(
-                "text-text-primary shrink-0 fill-white stroke-0 transition-transform duration-100 ease-out",
-                isCollapsed ? "" : "rotate-90",
-              )}
-            />
-          )}
-        </button>
+          <button
+            type="button"
+            className="flex min-w-[8px] shrink-0 items-center justify-start p-0"
+            onClick={(e) => {
+              e.stopPropagation();
+              if (row.hasChildren) onToggleCollapse(row.id);
+            }}
+            aria-label={isCollapsed ? "펼치기" : "접기"}
+          >
+            {row.hasChildren && (
+              <Icon
+                icon="Play"
+                size={8}
+                className={cn(
+                  "text-text-primary shrink-0 fill-white stroke-0 transition-transform duration-100 ease-out",
+                  isCollapsed ? "" : "rotate-90",
+                )}
+              />
+            )}
+          </button>
 
-        <span className={cn("", isSelected ? (row.type === "canvas" ? "" : "") : "text-inherit")}>
-          {row.type === "canvas" ? <CanvasIcon /> : <ObjectIcon />}
-        </span>
+          <span className={cn("", isSelected ? (row.type === "canvas" ? "" : "") : "text-inherit")}>
+            {row.type === "canvas" ? <CanvasIcon /> : <ObjectIcon />}
+          </span>
 
-        <span className={cn("truncate text-xs tracking-wide", isSelected ? "" : "")}>
-          {row.name}
-        </span>
+          <span className={cn("truncate text-xs tracking-wide", isSelected ? "" : "")}>
+            {row.name}
+          </span>
+        </div>
       </div>
     </div>
   );

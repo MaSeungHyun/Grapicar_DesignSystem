@@ -1,53 +1,54 @@
-import React, { useCallback, useState } from "react";
+import React from "react";
 import { cn } from "../../utils/style";
 import { Icon } from "../Icon";
+import { ROW_HEIGHT_PX } from "./constants";
 import { TreeViewContext } from "./context";
 import { TreeViewItem } from "./TreeViewItem";
 import type { TreeViewProps } from "./types";
-import { flattenTree, updateNode } from "./utils";
+import { useTreeViewState } from "./useTreeViewState";
 
+function DropPlaceholder({
+  index: _index,
+  isActive,
+  topPx,
+  onDragOver,
+  onDrop,
+  onDragLeave,
+}: {
+  index: number;
+  isActive: boolean;
+  topPx: number;
+  onDragOver: (e: React.DragEvent) => void;
+  onDrop: (e: React.DragEvent) => void;
+  onDragLeave: (e: React.DragEvent) => void;
+}): React.ReactElement {
+  return (
+    <div
+      role="presentation"
+      className={cn(
+        "z-1 absolute left-0 right-0 transition-colors duration-100",
+        isActive ? "bg-accent-700" : "bg-transparent",
+      )}
+      style={{
+        top: `${topPx}px`,
+        height: 2,
+      }}
+      onDragOver={onDragOver}
+      onDrop={onDrop}
+      onDragLeave={onDragLeave}
+    />
+  );
+}
+
+/**
+ * TreeView UI 전용. 상태·비즈니스 로직은 useTreeViewState에서 처리.
+ */
 export function TreeView({
   tree: initialTree,
   className,
   headerTitle = "Layers",
 }: TreeViewProps): React.ReactElement {
-  const [tree, setTree] = useState(initialTree);
-  const [collapsed, setCollapsed] = useState<Set<string | number>>(new Set());
-  const [selected, setSelected] = useState<string | number | null>(null);
-
-  const rows = flattenTree(tree, collapsed);
-
-  const onSelect = useCallback((id: string | number) => setSelected(id), []);
-
-  const onToggleCollapse = useCallback((id: string | number) => {
-    setCollapsed((prev) => {
-      const next = new Set(prev);
-      if (next.has(id)) next.delete(id);
-      else next.add(id);
-      return next;
-    });
-  }, []);
-
-  const onToggleVisible = useCallback(
-    (id: string | number, current: boolean) =>
-      setTree((t) => updateNode(t, id, { visible: !current })),
-    [],
-  );
-
-  const onToggleLocked = useCallback(
-    (id: string | number, current: boolean) =>
-      setTree((t) => updateNode(t, id, { locked: !current })),
-    [],
-  );
-
-  const contextValue = {
-    selected,
-    collapsed,
-    onSelect,
-    onToggleCollapse,
-    onToggleVisible,
-    onToggleLocked,
-  };
+  const { rows, contextValue, isPlaceholderActive } = useTreeViewState(initialTree);
 
   return (
     <TreeViewContext.Provider value={contextValue}>
@@ -66,10 +67,31 @@ export function TreeView({
         </div>
 
         <div className={cn("relative flex h-full flex-col overflow-y-auto")}>
-          <div className="bg-black-600 absolute left-px top-px flex h-full w-[36px] flex-1 flex-col" />
-          <div className="relative flex h-full flex-col px-px">
+          <div className="bg-black-600 absolute left-px top-px z-0 h-full w-[36px]" />
+          <div
+            className="relative flex flex-col px-px"
+            style={{ minHeight: rows.length * ROW_HEIGHT_PX }}
+          >
             {rows.map((row) => (
               <TreeViewItem key={row.id} row={row} />
+            ))}
+            {Array.from({ length: rows.length + 1 }, (_, i) => (
+              <DropPlaceholder
+                key={`drop-${i}`}
+                index={i}
+                topPx={i === 0 ? 0 : i * ROW_HEIGHT_PX - 1}
+                isActive={isPlaceholderActive(i)}
+                onDragOver={(e) => {
+                  e.preventDefault();
+                  e.dataTransfer.dropEffect = "move";
+                  contextValue.onDropTarget(i);
+                }}
+                onDrop={(e) => {
+                  e.preventDefault();
+                  contextValue.onDrop(i);
+                }}
+                onDragLeave={() => contextValue.onDropTargetClear()}
+              />
             ))}
           </div>
         </div>
