@@ -93,7 +93,7 @@ export function TreeViewItem({ row }: TreeViewItemProps): React.ReactElement {
             icon={locked ? "LockKeyhole" : "LockKeyholeOpen"}
             size={10}
             className={cn("fill-transparent stroke-gray-600", locked && "stroke-danger")}
-            stroke={locked && "#ff5f00aa"}
+            stroke={locked ? "#ff5f00" : undefined}
           />
         </button>
       </div>
