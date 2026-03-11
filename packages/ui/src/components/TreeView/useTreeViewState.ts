@@ -35,6 +35,21 @@ export function useTreeViewState(initialTree: TreeNode[]): {
 
   const rows = flattenTree(tree, collapsed);
 
+  /** 드래그 중인 노드 중 캔버스가 하나라도 있으면 true */
+  const isDraggingCanvas = (() => {
+    if (draggingIds.size === 0) return false;
+    return Array.from(draggingIds).some((id) => rows.find((r) => r.id === id)?.type === "canvas");
+  })();
+
+  /** 해당 인덱스에 드롭 시 노드가 위치할 depth (현재 rows 기준). */
+  const getDepthAtDropIndex = useCallback(
+    (index: number) => {
+      if (index < rows.length) return rows[index].depth;
+      return rows[rows.length - 1]?.depth ?? 0;
+    },
+    [rows],
+  );
+
   const onSelect = useCallback(
     (id: string | number, event?: { shiftKey: boolean; ctrlKey: boolean; metaKey: boolean }) => {
       const shift = event?.shiftKey ?? false;
@@ -109,16 +124,20 @@ export function useTreeViewState(initialTree: TreeNode[]): {
     setDropParentId(null);
   }, []);
 
-  const onDropTarget = useCallback((index: number) => {
-    setDropIndex(index);
-    setDropParentId(null);
-  }, []);
+  const onDropTarget = useCallback(
+    (index: number) => {
+      if (isDraggingCanvas && getDepthAtDropIndex(index) !== 0) return;
+      setDropIndex(index);
+      setDropParentId(null);
+    },
+    [isDraggingCanvas, getDepthAtDropIndex],
+  );
 
   const onDropTargetClear = useCallback(() => setDropIndex(null), []);
 
   const onDropParent = useCallback(
     (parentId: string | number) => {
-      if (draggingIds.size === 0) return;
+      if (draggingIds.size === 0 || isDraggingCanvas) return;
       const idList = Array.from(draggingIds);
       const firstId = idList[0];
       if (firstId == null) return;
@@ -131,7 +150,7 @@ export function useTreeViewState(initialTree: TreeNode[]): {
       setDropParentId(parentId);
       setDropIndex(null);
     },
-    [tree, draggingIds],
+    [tree, draggingIds, isDraggingCanvas],
   );
 
   const onDropParentClear = useCallback(() => setDropParentId(null), []);
@@ -141,7 +160,13 @@ export function useTreeViewState(initialTree: TreeNode[]): {
       if (draggingIds.size === 0) return;
       const { tree: treeWithoutNodes, removedNodes } = removeMultipleNodes(tree, draggingIds, rows);
       if (removedNodes.length === 0) return;
+      const hasCanvas = removedNodes.some((n) => n.type === "canvas");
       const newRows = flattenTree(treeWithoutNodes, collapsed);
+      if (hasCanvas) {
+        const depth =
+          index < newRows.length ? newRows[index].depth : newRows[newRows.length - 1]?.depth ?? 0;
+        if (depth !== 0) return;
+      }
       let nextTree: TreeNode[];
       if (newRows.length === 0) {
         nextTree = removedNodes;
@@ -167,6 +192,8 @@ export function useTreeViewState(initialTree: TreeNode[]): {
   const onDropOnItem = useCallback(
     (parentId: string | number) => {
       if (draggingIds.size === 0 || draggingIds.has(parentId)) return;
+      if (Array.from(draggingIds).some((id) => rows.find((r) => r.id === id)?.type === "canvas"))
+        return;
       if (Array.from(draggingIds).some((id) => isDescendant(tree, parentId, id))) return;
       const directParentIds = Array.from(draggingIds).map((id) => getParentId(tree, id));
       if (directParentIds.every((pid) => pid === parentId)) return;
@@ -207,7 +234,10 @@ export function useTreeViewState(initialTree: TreeNode[]): {
     onDropOnItem,
   };
 
-  const isPlaceholderActive = (index: number) => draggingIds.size > 0 && dropIndex === index;
+  const isPlaceholderActive = (index: number) =>
+    draggingIds.size > 0 &&
+    dropIndex === index &&
+    (!isDraggingCanvas || getDepthAtDropIndex(index) === 0);
 
   return { rows, contextValue, isPlaceholderActive };
 }
