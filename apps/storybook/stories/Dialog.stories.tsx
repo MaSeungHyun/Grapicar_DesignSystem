@@ -1,5 +1,5 @@
 // @ts-nocheck - React 18 vs Storybook key/ReactNode 타입 불일치로 인한 스토리 전용 비검사
-import { Button, Dialog, Icon } from "@grapicar-studio/design-system";
+import { Button, Dialog } from "@grapicar-studio/design-system";
 import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
 
@@ -49,17 +49,10 @@ export const Default: DialogStory = {
         <Dialog.Trigger asChild>
           <Button>Open Dialog</Button>
         </Dialog.Trigger>
-        <Dialog.Content outsideClickClose={args.outsideClickClose}>
+        <Dialog.Content outsideClickClose={args.outsideClickClose} className="px-[36px] py-[32px]">
           <Dialog.Title>
-            <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
-              <Icon
-                icon="TriangleAlert"
-                size={16}
-                fill="yellow"
-                stroke="black"
-                style={{ stroke: "black" }}
-              />
-              다이얼로그 타이틀
+            <div style={{ display: "flex", alignItems: "center" }}>
+              다이얼로그 타이틀 영역입니다.
             </div>
           </Dialog.Title>
           <Dialog.Description>다이얼로그의 설명을 작성하는 곳입니다.</Dialog.Description>
@@ -73,12 +66,17 @@ export const Default: DialogStory = {
             >
               🔗Grapicar_Design_System
             </a>
-            에 <span style={{ color: "#ff4785", fontWeight: "bold" }}> Storybook </span>
             문서를 참고하세요.
+          </Dialog.Description>
+
+          <Dialog.Description className="mb-10 mt-5">
+            부모로부터 Padding을 props로 전달하여 스타일링해주세요.
           </Dialog.Description>
           <Dialog.Footer>
             <Dialog.Close asChild>
-              <Button className="w-full">Close</Button>
+              <Button variant="primary" wrapperClassName="w-full">
+                Close
+              </Button>
             </Dialog.Close>
           </Dialog.Footer>
         </Dialog.Content>

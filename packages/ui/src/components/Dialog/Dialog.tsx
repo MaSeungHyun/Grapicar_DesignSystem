@@ -43,7 +43,7 @@ const DialogContent = ({
           }
         }}
         className={cn(
-          "bg-black-900 z-2 absolute left-1/2 top-1/2 min-h-[200px] min-w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-md border border-gray-800 px-6 py-4 shadow-md shadow-black/70",
+          "bg-black-900 z-2 absolute left-1/2 top-1/2 flex min-h-[200px] min-w-[420px] -translate-x-1/2 -translate-y-1/2 flex-col rounded-[14px] border border-gray-800 px-6 py-4 shadow-md shadow-black/70",
           className,
         )}
         {...props}
@@ -96,7 +96,12 @@ type DialogCloseProps = React.ComponentPropsWithoutRef<typeof DialogPrimitives.C
   className?: string;
 };
 const DialogClose = ({ className = "", ...props }: DialogCloseProps): React.ReactElement => {
-  return <DialogPrimitives.Close className={cn("cursor-pointer", className)} {...props} />;
+  return (
+    <DialogPrimitives.Close
+      className={cn("relative w-full cursor-pointer", className)}
+      {...props}
+    />
+  );
 };
 
 type DialogFooterProps = React.ComponentPropsWithoutRef<"div"> & {
@@ -111,7 +116,7 @@ const DialogFooter = ({
   return (
     <div
       className={cn(
-        "absolute bottom-0 left-0 flex min-h-[40px] w-full items-center px-6",
+        "relative bottom-0 left-0 flex min-h-[40px] w-full flex-1 items-end",
         className,
       )}
       {...props}
