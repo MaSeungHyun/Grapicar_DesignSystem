@@ -52,7 +52,7 @@ export const Default: SelectStory = {
     };
     return (
       <Select.Root value={value} onValueChange={handleValueChange}>
-        <Select.Trigger {...args} style={{ width: "100px" }}>
+        <Select.Trigger {...args} className="w-[100px]">
           <Select.Value placeholder="Select a ObjectType..." />
         </Select.Trigger>
 
@@ -84,7 +84,7 @@ export const Disabled: SelectStory = {
     };
     return (
       <Select.Root value={value} onValueChange={handleValueChange}>
-        <Select.Trigger {...args} style={{ width: "100px" }}>
+        <Select.Trigger {...args} className="w-[100px]">
           <Select.Value placeholder="Select a ObjectType..." />
         </Select.Trigger>
 
@@ -116,7 +116,7 @@ export const withLabel: SelectStory = {
     };
     return (
       <Select.Root value={value} onValueChange={handleValueChange}>
-        <Select.Trigger {...args} style={{ width: "100px" }}>
+        <Select.Trigger {...args} className="w-[100px]">
           <Select.Value placeholder="Select a ObjectType..." />
         </Select.Trigger>
 
