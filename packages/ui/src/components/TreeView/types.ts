@@ -23,7 +23,10 @@ export interface TreeViewContextValue {
   /** Shift+클릭 범위용 마지막 선택 id */
   lastSelectedId: string | number | null;
   collapsed: Set<string | number>;
-  onSelect: (id: string | number, event?: { shiftKey: boolean; ctrlKey: boolean; metaKey: boolean }) => void;
+  onSelect: (
+    id: string | number,
+    event?: { shiftKey: boolean; ctrlKey: boolean; metaKey: boolean },
+  ) => void;
   onToggleCollapse: (id: string | number) => void;
   onToggleVisible: (id: string | number, current: boolean) => void;
   onToggleLocked: (id: string | number, current: boolean) => void;
@@ -45,7 +48,7 @@ export interface TreeViewProps {
   tree: TreeNode[];
   className?: string;
   /** 헤더 타이틀 (기본: "Layers") */
-  headerTitle?: string;
+  sceneName?: string;
   /** 스크롤 영역 최대 높이 클래스 (기본: max-h-80) */
   maxHeight?: string;
 }

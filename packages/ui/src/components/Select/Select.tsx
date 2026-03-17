@@ -2,7 +2,11 @@ import * as SelectPrimitives from "@radix-ui/react-select";
 import { cn } from "../../utils/style";
 import { Icon } from "../Icon";
 
-const Root = SelectPrimitives.Root;
+// Radix Select Root의 반환 타입(ReactNode | Promise<ReactNode>)을
+// JSX 컴포넌트로 안전하게 사용할 수 있도록 래핑
+const Root: React.FC<React.ComponentPropsWithoutRef<typeof SelectPrimitives.Root>> = (props) => {
+  return <SelectPrimitives.Root {...props} />;
+};
 
 const SelectTrigger = ({
   children,
@@ -12,9 +16,9 @@ const SelectTrigger = ({
   return (
     <SelectPrimitives.Trigger
       className={cn(
-        "text-text-primary rounded-xs min-h-4 min-w-12 border border-gray-200 bg-black px-2 outline-none",
-        "hover:bg-black-300 border-gray-100",
-        props.disabled && "border-gray-300 text-gray-400 hover:bg-none",
+        "border-black-600 bg-black-700 text-text-primary rounded-xs min-h-4 min-w-12 border outline-none",
+        "hover:border-accent-300 hover:bg-black-300",
+        props.disabled && "border-gray-300 text-gray-400 hover:bg-transparent",
         className,
       )}
       {...props}
@@ -33,7 +37,7 @@ const SelectContent = ({
     <SelectPrimitives.Portal>
       <SelectPrimitives.Content
         className={cn(
-          "bg-black-300 border-accent-700 overflow-hidden rounded-sm border p-0 shadow-md shadow-black",
+          "border-accent-700 bg-black-300 overflow-hidden rounded-sm border p-0 shadow-md shadow-black",
           className,
         )}
         {...props}
@@ -58,10 +62,14 @@ type SelectValueProps = React.ComponentPropsWithoutRef<typeof SelectPrimitives.V
 
 const SelectValue = ({ className = "", placeholder, ...props }: SelectValueProps) => {
   return (
-    <div className="flex items-center justify-between">
-      <SelectPrimitives.Value placeholder={placeholder} {...props} />
+    <div className="border-black-600 bg-black-700 text-text-tertiary flex h-full items-center justify-between px-2">
+      <SelectPrimitives.Value
+        className={cn("placeholder:text-text-tertiary", className)}
+        placeholder={placeholder}
+        {...props}
+      />
       <SelectPrimitives.Icon>
-        <Icon icon="ChevronDown" />
+        <Icon icon="Play" className="fill-text-primary h-2 w-2 rotate-90 stroke-transparent" />
       </SelectPrimitives.Icon>
     </div>
   );
@@ -87,7 +95,8 @@ const SelectItem = ({
   return (
     <SelectPrimitives.Item
       className={cn(
-        "bg-black-300 hover:bg-accent-700 rounded-none border-none px-3 text-white outline-none hover:border-none",
+        "bg-black-300 text-text-primary rounded-none border-none px-3 outline-none",
+        "hover:bg-accent-700 hover:border-none",
         className,
       )}
       {...props}
@@ -123,15 +132,26 @@ const SelectLabel = ({
   );
 };
 
-export const Select = {
+export type SelectRootProps = React.ComponentPropsWithoutRef<typeof SelectPrimitives.Root>;
+
+export type SelectType = {
+  Root: React.FC<SelectRootProps>;
+  Trigger: typeof SelectTrigger;
+  Value: typeof SelectValue;
+  Content: typeof SelectContent;
+  Group: typeof SelectGroup;
+  Item: typeof SelectItem;
+  Separator: typeof SelectSeparator;
+  Label: typeof SelectLabel;
+};
+
+export const Select: SelectType = {
   Root,
   Trigger: SelectTrigger,
   Value: SelectValue,
-
   Content: SelectContent,
   Group: SelectGroup,
   Item: SelectItem,
-
   Separator: SelectSeparator,
   Label: SelectLabel,
 };

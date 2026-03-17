@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { cn } from "../../utils/style";
 import { Icon } from "../Icon";
 import { ROW_HEIGHT_PX } from "./constants";
@@ -46,30 +46,42 @@ function DropPlaceholder({
 export function TreeView({
   tree: initialTree,
   className,
-  headerTitle = "Layers",
+  sceneName = "NewScene",
 }: TreeViewProps): React.ReactElement {
   const { rows, contextValue, isPlaceholderActive } = useTreeViewState(initialTree);
+
+  const [open, setOpen] = useState(false);
 
   return (
     <TreeViewContext.Provider value={contextValue}>
       <div
         className={cn(
-          "bg-black-400 flex h-full w-full flex-col overflow-hidden border border-black shadow-lg",
+          "bg-black-400 flex h-full w-full flex-col overflow-y-scroll border border-black shadow-lg",
           className,
         )}
       >
-        <div className="bg-black-600 flex shrink-0 items-center justify-between border-b border-black px-3 py-2">
-          <div className="flex items-center gap-1.5">
+        <div
+          className="bg-black-600 border-text-tertiary z-2 sticky top-0 flex shrink-0 cursor-pointer items-center justify-between border border-b border-black px-3 py-2"
+          onClick={() => setOpen(!open)}
+        >
+          <div className="flex items-center gap-[4px]">
+            <Icon
+              icon="Play"
+              size={8}
+              className={cn(
+                "text-text-primary fill-text-primary mr-[3.5px] stroke-0 transition-transform duration-100 ease-out",
+                open ? "rotate-90" : "",
+              )}
+            />
             <Icon icon="Layers" size={10} className="text-text-primary" />
-            <span className="text-text-primary text-[10px] font-normal">{headerTitle}</span>
+            <span className="text-text-primary text-[10px] font-normal">{sceneName}</span>
           </div>
           <span className="text-text-tertiary text-[8px] font-normal">{rows.length} items</span>
         </div>
 
-        <div className={cn("relative flex h-full flex-col overflow-y-auto")}>
-          <div className="bg-black-600 absolute left-px top-px z-0 h-full w-[36px]" />
+        <div className={cn("relative flex flex-col")}>
           <div
-            className="relative flex flex-col px-px"
+            className="border-text-tertiary relative flex flex-col border-r"
             style={{ minHeight: rows.length * ROW_HEIGHT_PX }}
           >
             {rows.map((row) => (

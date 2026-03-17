@@ -1,7 +1,7 @@
+/* Tailwind 엔트리: 반드시 먼저 로드 → 유틸·@source 스캔이 동작함 */
 @import "tailwindcss";
 
-/* design-system 스타일: development 시 소스(styles.css) 로드 → 빌드 없이 변경 즉시 반영. production 시 빌드된 CSS 사용 */
+/* design-system 토큰·@theme·base (tailwindcss는 위에서 이미 로드됨) */
 @import "@grapicar-studio/design-system/styles";
 
-/* UI 패키지에서 text-accent, text-text-primary 등 토큰 클래스 사용처 스캔 (design-system styles.css의 @source와 함께 동작) */
 @source "../../../packages/ui/src/";
