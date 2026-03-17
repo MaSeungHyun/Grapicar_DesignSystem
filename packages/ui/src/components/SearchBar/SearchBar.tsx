@@ -9,15 +9,15 @@ export const SearchBar = ({ className = "", ...props }: SearchBarProps) => {
   return (
     <div
       className={cn(
-        "bg-black-600 border-accent-700 group relative flex min-w-12 items-center rounded-sm border",
-        "focus-within:border-accent-100 focus-within:hover:border-accent-300 hover:border-accent-500",
+        "bg-black-600 group relative flex min-w-12 items-center rounded-sm border border-gray-800",
+        "focus-within:border-accent-100 focus-within:hover:border-accent-300",
         className,
       )}
     >
       <Input
         className={cn(
           "pl-6.5 relative h-full w-full border-none focus:border-none focus:ring-0",
-          "placeholder:text-gray-400 group-focus-within:text-gray-100 group-hover:text-gray-100",
+          "placeholder:text-text-tertiary group-focus-within:text-gray-100 group-hover:text-gray-100",
         )}
         {...props}
       />
