@@ -1,2 +1,14 @@
-/* 빌드된 design-system CSS 사용 (dev 전에 pnpm build:ui 필요). dev 스크립트가 자동으로 build:ui 실행 */
-@import "@grapicar-studio/design-system/dist/design-system.css";
+/* Tailwind 반드시 먼저 → design-system은 토큰·@theme만 (styles.css = styles-base) */
+@import "tailwindcss";
+@import "@grapicar-studio/design-system/styles";
+
+@source "../stories/";
+@source "../../../packages/ui/src/";
+
+::-webkit-resizer {
+  background-color: #fff;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cline x1='10' y1='3' x2='3' y2='10' stroke='%23666' strokeWidth='1.2' strokeLinecap='round'/%3E%3Cline x1='10' y1='6' x2='6' y2='10' stroke='%23666' strokeWidth='1.2' strokeLinecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: bottom right;
+  background-size: contain;
+}

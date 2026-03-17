@@ -187,7 +187,7 @@ const meta = {
     layout: "centered",
     docs: {
       description: {
-        component: "Checkbox 컴포넌트로, 체크박스를 표시하는 컴포넌트입니다.",
+        component: "TreeView 컴포넌트로, 트리 구조를 표시하는 컴포넌트입니다.",
       },
     },
   },

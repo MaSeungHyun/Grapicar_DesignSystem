@@ -1,14 +1,11 @@
-import "./preview.css";
 import type { Preview } from "@storybook/react";
 import React from "react";
+import "./preview.css";
 
 const THEMES = ["mint", "sky", "blue"] as const;
 type ThemeType = (typeof THEMES)[number];
 
-function ThemeDecorator(
-  Story: React.ComponentType,
-  context: { globals: { theme?: string } }
-) {
+function ThemeDecorator(Story: React.ComponentType, context: { globals: { theme?: string } }) {
   const theme = (context.globals?.theme ?? "mint") as ThemeType;
   React.useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
@@ -20,7 +17,7 @@ const preview: Preview = {
   globalTypes: {
     theme: {
       name: "Theme",
-      defaultValue: "mint",
+      defaultValue: "blue",
       toolbar: {
         icon: "paintbrush",
         items: THEMES,
