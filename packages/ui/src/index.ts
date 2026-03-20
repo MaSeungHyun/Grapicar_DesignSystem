@@ -11,6 +11,7 @@ export { DropdownMenu } from "./components/DropdownMenu";
 export { Icon } from "./components/Icon";
 export { Input } from "./components/Input";
 export { MenuBar } from "./components/MenuBar";
+export { Progress } from "./components/Progress";
 export { SearchBar } from "./components/SearchBar";
 export { Select } from "./components/Select";
 export { TextArea } from "./components/TextArea";
