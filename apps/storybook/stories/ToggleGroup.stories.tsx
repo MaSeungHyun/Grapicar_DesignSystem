@@ -1,5 +1,6 @@
 // @ts-nocheck - React 18 vs Storybook key/ReactNode 타입 불일치로 인한 스토리 전용 비검사
 import { Icon, ToggleGroup } from "@grapicar-studio/design-system";
+import { cn } from "@grapicar-studio/design-system/src/utils/style.js";
 import { useArgs } from "@storybook/preview-api";
 import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
@@ -71,15 +72,7 @@ export const Default: ToggleGroupStory = {
           <ToggleGroup.Item
             key={item}
             value={item}
-            style={{
-              width: "30px",
-              height: "30px",
-              backgroundColor: value.includes(item)
-                ? "var(--color-accent-700)"
-                : "var(--color-black-600)",
-              border: value.includes(item) ? "2px solid var(--color-accent-100)" : undefined,
-              transition: "background-color 0.1s",
-            }}
+            className={cn("h-[30px] w-[30px]", value.includes(item) && "border-accent-100")}
           >
             <Icon
               icon={item}
@@ -115,48 +108,29 @@ export const Vertical: ToggleGroupStory = {
       <ToggleGroup.Root
         {...args}
         onValueChange={handleValueChange}
-        style={{ borderRadius: "10px", overflow: "hidden" }}
+        style={{ borderRadius: "3px", overflow: "hidden" }}
       >
         <ToggleGroup.Item
           value="translate"
-          style={{
-            height: "40px",
-            width: "50px",
-            backgroundColor:
-              value === "translate" ? "var(--color-accent-700)" : "var(--color-black-600)",
-            border: value === "translate" ? "2px solid var(--color-accent-100)" : undefined,
-            borderRadius:
-              args.orientation === "vertical" ? "10px 10px 0px 0px" : "10px 0px 0px 10px",
-            transition: "background-color 0.1s",
-          }}
+          className={cn(
+            "h-[40px] w-[50px] rounded-t-[3px]",
+            value === "translate" && "border-accent-100",
+          )}
         >
           <Icon icon="Move3d" size={ICON_SIZE} />
         </ToggleGroup.Item>
         <ToggleGroup.Item
           value="rotate"
-          style={{
-            height: "40px",
-            width: "50px",
-            backgroundColor:
-              value === "rotate" ? "var(--color-accent-700)" : "var(--color-black-600)",
-            border: value === "rotate" ? "2px solid var(--color-accent-100)" : undefined,
-            transition: "background-color 0.1s",
-          }}
+          className={cn("h-[40px] w-[50px]", value === "rotate" && "border-accent-100")}
         >
           <Icon icon="Rotate3d" size={ICON_SIZE} />
         </ToggleGroup.Item>
         <ToggleGroup.Item
           value="scale"
-          style={{
-            height: "40px",
-            width: "50px",
-            backgroundColor:
-              value === "scale" ? "var(--color-accent-700)" : "var(--color-black-600)",
-            border: value === "scale" ? "2px solid var(--color-accent-100)" : undefined,
-            borderRadius:
-              args.orientation === "vertical" ? "0px 0px 10px 10px" : "0px 10px 10px 0px",
-            transition: "background-color 0.1s",
-          }}
+          className={cn(
+            "h-[40px] w-[50px] rounded-b-[3px]",
+            value === "scale" && "border-accent-100",
+          )}
         >
           <Icon icon="Scale3d" size={ICON_SIZE} />
         </ToggleGroup.Item>

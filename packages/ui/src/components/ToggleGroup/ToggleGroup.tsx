@@ -31,7 +31,7 @@ const ToggleGroupItem = ({
   return (
     <ToggleGroupPrimitive.Item
       className={cn(
-        "bg-black-600 group relative flex min-h-5 min-w-5 items-center justify-center text-white hover:bg-gray-700",
+        "bg-black-600 hover:bg-accent-700 text-text-primary group relative flex min-h-5 min-w-5 items-center justify-center border border-transparent",
         className,
       )}
       {...props}
