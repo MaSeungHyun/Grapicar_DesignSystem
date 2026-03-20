@@ -23,7 +23,7 @@ const DropdownMenuContent = forwardRef<
     <DropdownPrimitive.Content
       ref={ref}
       className={cn(
-        "text-text-primary bg-black-300 ring-accent-100/20 data-[side=bottom]:animate-slideUpAndFade data-[side=left]:animate-slideRightAndFade data-[side=right]:animate-slideLeftAndFade data-[side=top]:animate-slideDownAndFade z-9000 min-w-[180px] rounded-[4px] border-none pb-[9px] pt-[4px] shadow-[0_0_18px_rgba(0,200,255,0.45)] ring-2 will-change-[opacity,transform]",
+        "text-text-primary bg-black-300 ring-accent-100/20 data-[side=bottom]:animate-slideUpAndFade data-[side=left]:animate-slideRightAndFade data-[side=right]:animate-slideLeftAndFade data-[side=top]:animate-slideDownAndFade z-9000 ring-`1 min-w-[180px] rounded-[4px] border-none pb-[9px] pt-[4px] shadow-[0_0_8px_rgba(0,200,255,0.45)] will-change-[opacity,transform]",
         className,
       )}
       onPointerDownOutside={(e) => {
@@ -44,7 +44,7 @@ const DropdownMenuItem = forwardRef<
   <DropdownPrimitive.Item
     ref={ref}
     className={cn(
-      "text-text-tertiary data-[highlighted]:bg-accent-700 data-[disabled]:text-text-tertiary/50 hover:bg-accent-700 data-[highlighted]:text-text-primary group relative flex h-[25px] select-none items-center rounded-[3px] pl-[10px] pr-[5px] text-[13px] leading-none outline-none",
+      "text-text-tertiary data-[highlighted]:bg-accent-700 data-[disabled]:text-text-tertiary/50 hover:bg-accent-700 data-[highlighted]:text-text-primary group relative flex h-[25px] select-none items-center rounded-[3px] pl-[10px] pr-[5px] text-[10px] leading-none outline-none",
       className,
     )}
     {...props}
@@ -73,7 +73,7 @@ const DropdownMenuSubTrigger = forwardRef<
   <DropdownPrimitive.SubTrigger
     ref={ref}
     className={cn(
-      "text-text-tertiary data-[state=open]:bg-violet4 data-[disabled]:text-text-tertiary/50 data-[state=open]:bg-accent-700 hover:bg-accent-700 data-[disabled]:text-gc-gray-500 group relative flex h-[25px] select-none items-center rounded-[3px] pl-[10px] pr-[5px] text-[13px] leading-none outline-none data-[disabled]:pointer-events-none data-[highlighted]:data-[state=open]:text-white data-[highlighted]:text-white data-[state=open]:text-white",
+      "text-text-tertiary data-[state=open]:bg-violet4 data-[disabled]:text-text-tertiary/50 data-[state=open]:bg-accent-700 hover:bg-accent-700 data-[disabled]:text-gc-gray-500 group relative flex h-[25px] select-none items-center rounded-[3px] pl-[10px] pr-[5px] text-[10px] leading-none outline-none data-[disabled]:pointer-events-none data-[highlighted]:data-[state=open]:text-white data-[highlighted]:text-white data-[state=open]:text-white",
       className,
     )}
     {...props}
@@ -94,7 +94,7 @@ const DropdownMenuSubContent = forwardRef<
     <DropdownPrimitive.SubContent
       ref={ref}
       className={cn(
-        "text-text-primary bg-black-300 ring-accent-100/20 data-[side=bottom]:animate-slideUpAndFade data-[side=left]:animate-slideRightAndFade data-[side=right]:animate-slideLeftAndFade data-[side=top]:animate-slideDownAndFade z-9000 min-w-[140px] rounded-[4px] border-none pb-[9px] pt-[4px] shadow-[0_0_18px_rgba(0,200,255,0.45)] ring-2 will-change-[opacity,transform]",
+        "text-text-primary bg-black-300 ring-accent-100/20 data-[side=bottom]:animate-slideUpAndFade data-[side=left]:animate-slideRightAndFade data-[side=right]:animate-slideLeftAndFade data-[side=top]:animate-slideDownAndFade z-9000 min-w-[140px] rounded-[4px] border-none pb-[9px] pt-[4px] shadow-[0_0_8px_rgba(0,200,255,0.45)] ring-1 will-change-[opacity,transform]",
         className,
       )}
       {...props}

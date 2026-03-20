@@ -10,6 +10,7 @@ export { Dialog } from "./components/Dialog";
 export { DropdownMenu } from "./components/DropdownMenu";
 export { Icon } from "./components/Icon";
 export { Input } from "./components/Input";
+export { MenuBar } from "./components/MenuBar";
 export { SearchBar } from "./components/SearchBar";
 export { Select } from "./components/Select";
 export { TextArea } from "./components/TextArea";
