@@ -8,17 +8,50 @@ type SliderRootProps = React.ComponentPropsWithoutRef<typeof SliderPrimitive.Roo
 };
 
 const SliderRoot = React.forwardRef<React.ElementRef<typeof SliderPrimitive.Root>, SliderRootProps>(
-  ({ className, ...props }, ref) => (
-    <SliderPrimitive.Root
-      ref={ref}
-      className={cn(
-        "group relative flex w-full touch-none select-none items-center",
-        "data-disabled:pointer-events-none",
-        className,
-      )}
-      {...props}
-    />
-  ),
+  (
+    {
+      className,
+      disabled,
+      onPointerDown,
+      onPointerUp,
+      onPointerCancel,
+      onLostPointerCapture,
+      ...props
+    },
+    ref,
+  ) => {
+    const [pressed, setPressed] = React.useState(false);
+
+    return (
+      <SliderPrimitive.Root
+        ref={ref}
+        disabled={disabled}
+        data-pressed={pressed && !disabled ? "" : undefined}
+        className={cn(
+          "group relative flex w-full touch-none select-none items-center",
+          "data-disabled:pointer-events-none",
+          className,
+        )}
+        onPointerDown={(e) => {
+          if (!disabled) setPressed(true);
+          onPointerDown?.(e);
+        }}
+        onPointerUp={(e) => {
+          setPressed(false);
+          onPointerUp?.(e);
+        }}
+        onPointerCancel={(e) => {
+          setPressed(false);
+          onPointerCancel?.(e);
+        }}
+        onLostPointerCapture={(e) => {
+          setPressed(false);
+          onLostPointerCapture?.(e);
+        }}
+        {...props}
+      />
+    );
+  },
 );
 SliderRoot.displayName = SliderPrimitive.Root.displayName;
 
@@ -71,12 +104,10 @@ export const SliderThumb = React.forwardRef<
     ref={ref}
     className={cn(
       "bg-accent-100 z-2 relative block h-[12px] w-[12px] cursor-grab rounded-full shadow-sm outline-none",
-      /* Thumb 기준: 키보드 포커스·클릭/드래그 시 바깥쪽 반투명 링 */
-      "ring-accent-100/0 ring-0 transition-shadow duration-150 ease-out",
-      "focus-visible:ring-accent-100/35 focus-visible:ring-8 focus-visible:ring-offset-0",
-      "active:ring-accent-100/30 active:ring-[6px] active:ring-offset-0",
-      /* Radix가 주는 상태(버전에 따라 있을 수 있음) */
-      "data-[state=active]:ring-accent-100/30 data-[state=active]:ring-[6px] data-[state=active]:ring-offset-0",
+      /* Root에 data-pressed일 때만 링 (트랙/썸 모두 포인터로 조작 중) */
+      "ring-0 ring-accent-100/0 transition-shadow duration-150 ease-out",
+      "group-data-pressed:ring-[6px] group-data-pressed:ring-accent-100/30 group-data-pressed:ring-offset-0",
+      "focus-visible:outline-none",
       "disabled:bg-accent-700 disabled:pointer-events-none",
       "data-disabled:bg-accent-700 data-disabled:pointer-events-none",
       className,
