@@ -30,6 +30,30 @@ const meta = {
         type: { summary: "function" },
       },
     },
+    placeholder: {
+      control: "text",
+      defaultValue: "Enter your text",
+      table: {
+        type: { summary: "string" },
+        defaultValue: { summary: "Enter your text" },
+      },
+    },
+    readOnly: {
+      control: "boolean",
+      defaultValue: false,
+      table: {
+        type: { summary: "boolean" },
+        defaultValue: { summary: "false" },
+      },
+    },
+    disabled: {
+      control: "boolean",
+      defaultValue: false,
+      table: {
+        type: { summary: "boolean" },
+        defaultValue: { summary: "false" },
+      },
+    },
   },
   tags: ["autodocs"],
 } satisfies Meta<typeof Input>;
@@ -41,6 +65,9 @@ type InputStory = StoryObj<typeof Input>;
 export const Default: InputStory = {
   args: {
     value: "Grapicar Studio",
+    placeholder: "Enter your text",
+    readOnly: false,
+    disabled: false,
   },
   render: (args) => {
     const [{ value }, setValue] = useArgs();
