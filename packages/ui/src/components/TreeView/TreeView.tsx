@@ -61,7 +61,7 @@ export function TreeView({
         )}
       >
         <div
-          className="bg-black-600 border-text-tertiary z-2 sticky top-0 flex shrink-0 cursor-pointer items-center justify-between border border-b border-black px-3 py-2"
+          className="bg-black-600 z-2 sticky top-0 flex shrink-0 cursor-pointer items-center justify-between px-3 py-2"
           onClick={() => setOpen(!open)}
         >
           <div className="flex items-center gap-[4px]">

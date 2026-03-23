@@ -14,6 +14,8 @@ export { MenuBar } from "./components/MenuBar";
 export { Progress } from "./components/Progress";
 export { SearchBar } from "./components/SearchBar";
 export { Select } from "./components/Select";
+export { Slider } from "./components/Slider";
+export type { SliderType } from "./components/Slider/Slider";
 export { Spinner } from "./components/Spinner";
 export { TextArea } from "./components/TextArea";
 export { Toggle } from "./components/Toggle";
