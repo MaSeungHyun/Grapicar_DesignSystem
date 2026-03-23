@@ -62,7 +62,7 @@ export const Default: DropdownMenuStory = {
       <DropdownMenu.Root {...args}>
         <DropdownMenu.Trigger asChild>
           <Button variant="secondary" className="bg-transparent focus:outline-none">
-            File
+            Add
           </Button>
         </DropdownMenu.Trigger>
         <DropdownMenu.Content
@@ -71,39 +71,104 @@ export const Default: DropdownMenuStory = {
           align={args.align}
           sideOffset={3}
         >
+          <DropdownMenu.Item>
+            <Icon icon="Package" className="mr-2" />
+            Empty Object
+          </DropdownMenu.Item>
+
           <DropdownMenu.Sub>
             <DropdownMenu.SubTrigger>
-              <Icon icon="Download" className="mr-2" />
-              Import
+              <Icon icon="Box" className="mr-2" />
+              Mesh
             </DropdownMenu.SubTrigger>
             <DropdownMenu.SubContent>
-              <DropdownMenu.Item>PSD</DropdownMenu.Item>
-              <DropdownMenu.Item>PNG</DropdownMenu.Item>
-              <DropdownMenu.Item>TTF</DropdownMenu.Item>
-              <DropdownMenu.Item>GLB</DropdownMenu.Item>
-              <DropdownMenu.Item>GLTF</DropdownMenu.Item>
-              <DropdownMenu.Item>ACTION</DropdownMenu.Item>
-              <DropdownMenu.Item>ASSET</DropdownMenu.Item>
+              <DropdownMenu.Item>
+                <Icon icon="Box" className="mr-2" />
+                Cube
+              </DropdownMenu.Item>
+              <DropdownMenu.Item>
+                <Icon icon="Circle" className="mr-2" />
+                Sphere
+              </DropdownMenu.Item>
+              <DropdownMenu.Item>
+                <Icon icon="Square" className="mr-2" />
+                Plane
+              </DropdownMenu.Item>
+              <DropdownMenu.Item>
+                <Icon icon="Cylinder" className="mr-2" />
+                Cylinder
+              </DropdownMenu.Item>
+              <DropdownMenu.Item>
+                <Icon icon="Pill" className="mr-2" />
+                Capsule
+              </DropdownMenu.Item>
+              <DropdownMenu.Item>
+                <Icon icon="Cone" className="mr-2" />
+                Cone
+              </DropdownMenu.Item>
+              <DropdownMenu.Item>
+                <Icon icon="Torus" className="mr-2" />
+                Torus
+              </DropdownMenu.Item>
+            </DropdownMenu.SubContent>
+          </DropdownMenu.Sub>
+
+          <DropdownMenu.Sub>
+            <DropdownMenu.SubTrigger>
+              <Icon icon="Video" className="mr-2" />
+              Camera
+            </DropdownMenu.SubTrigger>
+            <DropdownMenu.SubContent>
+              <DropdownMenu.Item>
+                <Icon icon="Video" className="mr-2" />
+                Perspective
+              </DropdownMenu.Item>
+              <DropdownMenu.Item>
+                <Icon icon="Video" className="mr-2" />
+                Orthographic
+              </DropdownMenu.Item>
+            </DropdownMenu.SubContent>
+          </DropdownMenu.Sub>
+
+          <DropdownMenu.Sub>
+            <DropdownMenu.SubTrigger>
+              <Icon icon="Lightbulb" className="mr-2" />
+              Light
+            </DropdownMenu.SubTrigger>
+            <DropdownMenu.SubContent>
+              <DropdownMenu.Item>
+                <Icon icon="Flashlight" className="mr-2" />
+                Directional
+              </DropdownMenu.Item>
+              <DropdownMenu.Item>
+                <Icon icon="Sun" className="mr-2" />
+                Point
+              </DropdownMenu.Item>
+              <DropdownMenu.Item>
+                <Icon icon="Spotlight" className="mr-2" />
+                Spot
+              </DropdownMenu.Item>
             </DropdownMenu.SubContent>
           </DropdownMenu.Sub>
 
           <DropdownMenu.Item>
-            <Icon icon="Upload" className="mr-2" />
-            Export
+            <Icon icon="CaseSensitive" className="mr-2" />
+            Text
           </DropdownMenu.Item>
+
           <DropdownMenu.Separator />
           <DropdownMenu.Item>
-            <Icon icon="Save" className="mr-2" />
-            Save
+            <Icon icon="ClipboardCopy" className="mr-2" />
+            Copy
           </DropdownMenu.Item>
           <DropdownMenu.Item>
-            <Icon icon="SaveAll" className="mr-2" />
-            Save all
+            <Icon icon="ClipboardPaste" className="mr-2" />
+            Paste
           </DropdownMenu.Item>
           <DropdownMenu.Separator />
           <DropdownMenu.Item>
             <Icon icon="SquareArrowRight" className="mr-2" />
-            Close Project
+            Delete
           </DropdownMenu.Item>
         </DropdownMenu.Content>
       </DropdownMenu.Root>

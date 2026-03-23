@@ -23,7 +23,7 @@ const DropdownMenuContent = forwardRef<
     <DropdownPrimitive.Content
       ref={ref}
       className={cn(
-        "text-text-primary bg-black-300 ring-accent-100/20 data-[side=bottom]:animate-slideUpAndFade data-[side=left]:animate-slideRightAndFade data-[side=right]:animate-slideLeftAndFade data-[side=top]:animate-slideDownAndFade z-9000 ring-`1 min-w-[180px] rounded-[4px] border-none pb-[9px] pt-[4px] shadow-[0_0_8px_rgba(0,200,255,0.45)] will-change-[opacity,transform]",
+        "text-text-primary bg-black-300 ring-accent-100/20 data-[side=bottom]:animate-slideUpAndFade data-[side=left]:animate-slideRightAndFade data-[side=right]:animate-slideLeftAndFade data-[side=top]:animate-slideDownAndFade z-9000 min-w-[180px] rounded-[4px] border-none pb-[9px] pt-[4px] shadow-[0_0_8px_rgba(0,200,255,0.45)] ring-1 will-change-[opacity,transform]",
         className,
       )}
       onPointerDownOutside={(e) => {
@@ -79,7 +79,7 @@ const DropdownMenuSubTrigger = forwardRef<
     {...props}
   >
     {children}
-    <div className="text-text-primary group-data-[disabled]:text-text-tertiary/50 group-data-[highlighted]:text-text-primary ml-auto pl-5">
+    <div className="text-text-tertiary group-data-[disabled]:text-text-tertiary/50 group-data-[highlighted]:text-text-primary ml-auto pl-5">
       <Icon icon="ChevronRight" />
     </div>
   </DropdownPrimitive.SubTrigger>
@@ -97,6 +97,7 @@ const DropdownMenuSubContent = forwardRef<
         "text-text-primary bg-black-300 ring-accent-100/20 data-[side=bottom]:animate-slideUpAndFade data-[side=left]:animate-slideRightAndFade data-[side=right]:animate-slideLeftAndFade data-[side=top]:animate-slideDownAndFade z-9000 min-w-[140px] rounded-[4px] border-none pb-[9px] pt-[4px] shadow-[0_0_8px_rgba(0,200,255,0.45)] ring-1 will-change-[opacity,transform]",
         className,
       )}
+      sideOffset={2}
       {...props}
     />
   </DropdownMenuPortal>

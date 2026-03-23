@@ -183,18 +183,55 @@
   /* Shadow */
   --shadow-menu-primary: 0 0 3px color-mix(in srgb, #005255 calc(100% * <alpha-value>), transparent);
 
-  /* Animation */
+  /* Animation — DropdownMenu 등에서 data-[side=*]:animate-* 와 매칭되려면 각각 --animate-* 필요 */
   --animate-slideUpAndFade: slideUpAndFade 0.2s ease-in-out;
+  --animate-slideDownAndFade: slideDownAndFade 0.2s ease-in-out;
+  --animate-slideRightAndFade: slideRightAndFade 0.2s ease-in-out;
+  --animate-slideLeftAndFade: slideLeftAndFade 0.2s ease-in-out;
+}
 
-  @keyframes slideUpAndFade {
-    0% {
-      transform-origin: top;
-      transform: scaleY(0%);
-    }
-    50% {
-      transform-origin: top;
-      transform: scaleY(100%);
-    }
+/* @keyframes는 전역에 두는 편이 안전 (@theme 안에 넣으면 일부 빌드에서 무시될 수 있음) */
+@keyframes slideUpAndFade {
+  0% {
+    transform-origin: top;
+    transform: scaleY(0%);
+  }
+  50% {
+    transform-origin: top;
+    transform: scaleY(100%);
+  }
+}
+
+@keyframes slideDownAndFade {
+  0% {
+    transform-origin: bottom;
+    transform: scaleY(0%);
+  }
+  50% {
+    transform-origin: bottom;
+    transform: scaleY(100%);
+  }
+}
+
+@keyframes slideRightAndFade {
+  0% {
+    transform-origin: right;
+    transform: scaleX(0%);
+  }
+  50% {
+    transform-origin: right;
+    transform: scaleX(100%);
+  }
+}
+
+@keyframes slideLeftAndFade {
+  0% {
+    transform-origin: left;
+    transform: scaleX(0%);
+  }
+  50% {
+    transform-origin: left;
+    transform: scaleX(100%);
   }
 }
 
